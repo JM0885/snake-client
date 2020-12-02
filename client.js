@@ -7,15 +7,21 @@ const connect = function() {
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
   conn.on('data', (data) => {
-    console.log(data)
+    console.log('server responded with: ',  data)
   });
   conn.on('connect', () => {
     console.log('Successfully connected to game server.')
-  }); 
-  conn.on('connect', () => {
     conn.write('Name: JDM');
+    setTimeout(function(){conn.write('Move: up')}, 300);
+    setTimeout(function(){conn.write('Move: up')}, 600);
+    setTimeout(function(){conn.write('Move: up')}, 900);
+    setTimeout(function(){conn.write('Move: up')}, 1200);
+  }); 
+
+  conn.on('data', (data) => {
   });
-    return conn;
+
+  return conn;
 }
 
 module.exports = { connect };
